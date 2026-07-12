@@ -6,13 +6,6 @@ from collections.abc import Mapping
 import copy
 from typing import Any
 
-from apyhiveapi import Auth
-from apyhiveapi.helper.hive_exceptions import (
-    HiveApiError,
-    HiveInvalid2FACode,
-    HiveInvalidPassword,
-    HiveInvalidUsername,
-)
 import voluptuous as vol
 
 from homeassistant.config_entries import (
@@ -26,6 +19,13 @@ from homeassistant.core import callback
 import logging
 
 from . import HiveConfigEntry
+from .apyhiveapi import Auth
+from .apyhiveapi.helper.hive_exceptions import (
+    HiveApiError,
+    HiveInvalid2FACode,
+    HiveInvalidPassword,
+    HiveInvalidUsername,
+)
 from .const import (
     CONF_CODE,
     CONF_DEVICE_NAME,

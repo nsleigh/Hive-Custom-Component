@@ -8,8 +8,6 @@ import logging
 from typing import Any, Concatenate
 
 from aiohttp.web_exceptions import HTTPException
-from apyhiveapi import Auth, Hive
-from apyhiveapi.helper.hive_exceptions import HiveReauthRequired
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_SCAN_INTERVAL
@@ -18,6 +16,8 @@ from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client, device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
+from .apyhiveapi import Auth, Hive
+from .apyhiveapi.helper.hive_exceptions import HiveReauthRequired
 from .const import DOMAIN, PLATFORM_LOOKUP, PLATFORMS
 from .entity import HiveEntity
 

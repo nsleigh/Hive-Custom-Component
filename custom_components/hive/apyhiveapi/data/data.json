@@ -1,0 +1,4064 @@
+{
+  "original": "Using File",
+  "parsed": {
+    "user": {
+      "id": "user-0000-0000-0000-000000000001",
+      "username": "test@test.com",
+      "firstName": "FirstName",
+      "lastName": "LastName",
+      "address": "Address",
+      "city": "City",
+      "country": "Country",
+      "countryCode": "GB",
+      "postcode": "AAA BBB",
+      "longitude": -9.025986,
+      "latitude": 98.82936,
+      "pin": "0000",
+      "email": "test@test.com",
+      "mobile": "",
+      "phone": "",
+      "timezone": "Europe/London",
+      "locale": "en-GB",
+      "temperatureUnit": "C"
+    },
+    "status": "OK",
+    "alerts": {
+      "failuresEmail": false,
+      "failuresSMS": false,
+      "warningsEmail": false,
+      "warningsSMS": false,
+      "nightAlerts": false
+    },
+    "media": {
+      "allowAnalyticsSharing": false
+    },
+    "products": [
+      {
+        "id": "hub-0000-0000-0000-000000000001",
+        "type": "sense",
+        "sortOrder": 0,
+        "created": 1343971266301,
+        "parent": "parent-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "model": "SENSE",
+          "version": "1.0.0-5999-16.0",
+          "manufacturer": "AlertMe",
+          "sensors": {
+            "GLASS_BREAK": {
+              "active": true,
+              "clipid": "Clip 1",
+              "start": 1549184714000,
+              "end": 1549184716000
+            },
+            "SMOKE_CO": {
+              "active": false,
+              "clipid": "Clip 2",
+              "start": 1543759418000,
+              "end": 1543759429000
+            },
+            "DOG_BARK": {
+              "active": false,
+              "clipid": "Clip 3",
+              "start": 1550225420000,
+              "end": 1550225422000
+            }
+          },
+          "capabilities": [
+            "NOTIFICATIONS",
+            "CHANGE_WIFI",
+            "INFORMATION",
+            "DATA_SHARING",
+            "RENAME",
+            "REBOOT_HUB"
+          ]
+        },
+        "state": {
+          "name": "Hub",
+          "mute": false,
+          "sensors": {
+            "GLASS_BREAK": true,
+            "SMOKE_CO": true,
+            "DOG_BARK": true
+          }
+        }
+      },
+      {
+        "id": "hotwater-0000-0000-0000-000000000001",
+        "type": "hotwater",
+        "sortOrder": 0,
+        "created": 1490945300074,
+        "lastSeen": 1496048965374,
+        "parent": "boilermodule-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "model": "SLR2",
+          "version": "08074640",
+          "zone": "boilermodule-0000-0000-0000-000000000001",
+          "maxEvents": 6,
+          "holidayMode": {
+            "enabled": false,
+            "start": 1494063000000,
+            "end": 1494167400000
+          },
+          "capabilities": [
+            "BOOST",
+            "HOLIDAY_MODE"
+          ],
+          "previous": {
+            "mode": "OFF"
+          },
+          "pmz": "OK"
+        },
+        "state": {
+          "name": "Hotwater",
+          "mode": "SCHEDULE",
+          "schedule": {
+            "monday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 405
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 435
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "tuesday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 495
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 525
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "wednesday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 405
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 435
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "thursday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 405
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 435
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "friday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 405
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 435
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "saturday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 405
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 435
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ],
+            "sunday": [
+              {
+                "value": {
+                  "status": "ON"
+                },
+                "start": 495
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 525
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 720
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 840
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 960
+              },
+              {
+                "value": {
+                  "status": "OFF"
+                },
+                "start": 1290
+              }
+            ]
+          },
+          "boost": null,
+          "status": "OFF"
+        }
+      },
+      {
+        "id": "heating-0000-0000-0000-000000000001",
+        "type": "heating",
+        "sortOrder": 1,
+        "created": 1498773558071,
+        "lastSeen": 1761218641848,
+        "parent": "boilermodule-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "model": "SLR1",
+          "version": "10094640",
+          "upgrade": {
+            "available": false,
+            "upgrading": false
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "HEATING_ALERTS",
+            "GEOLOCATION",
+            "HOLIDAY_MODE",
+            "BOOST",
+            "OPTIMUM_START",
+            "TRV_AUTO_BOOST_READY"
+          ],
+          "holidayMode": {
+            "active": false,
+            "enabled": false,
+            "start": 1621203120000,
+            "end": 1801091820000,
+            "temperature": 7
+          },
+          "modelVariant": "SLR1",
+          "working": false,
+          "pmz": "OK",
+          "previous": {
+            "mode": "OFF"
+          },
+          "scheduleOverride": false,
+          "temperature": 19.2,
+          "zone": "boilermodule-0000-0000-0000-000000000001",
+          "autoBoost": {
+            "active": false,
+            "duration": 30,
+            "trvs": []
+          },
+          "readyBy": false
+        },
+        "state": {
+          "name": "Heating Zone 1",
+          "boost": null,
+          "frostProtection": 7,
+          "mode": "OFF",
+          "schedule": {
+            "monday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "tuesday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "wednesday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "thursday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "friday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "saturday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ],
+            "sunday": [
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 330
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 510
+              },
+              {
+                "value": {
+                  "target": 20
+                },
+                "start": 900
+              },
+              {
+                "value": {
+                  "target": 7
+                },
+                "start": 1020
+              }
+            ]
+          },
+          "target": 7,
+          "optimumStart": false,
+          "autoBoost": "ENABLED"
+        }
+      },
+      {
+        "id": "trvcontrol-0000-0000-0000-000000000001",
+        "type": "trvcontrol",
+        "sortOrder": 1,
+        "created": 1714990857569,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "version": "00000000",
+          "upgrade": {
+            "available": false,
+            "upgrading": false
+          },
+          "parent": "trvcontrol-0000-0000-0000-000000000001",
+          "capabilities": [
+            "HOLIDAY_MODE",
+            "BOOST",
+            "TRV_AUTO_BOOST_READY"
+          ],
+          "maxEvents": 6,
+          "pmz": "OK",
+          "temperature": 17.6,
+          "working": false,
+          "trvs": [
+            "trv-0000-0000-0000-000000000001"
+          ],
+          "consumers": [
+            "trv-0000-0000-0000-000000000001"
+          ],
+          "previous": {},
+          "scheduleOverride": false,
+          "zoneName": "TRV Zone 1"
+        },
+        "state": {
+          "name": "TRV Zone 1",
+          "mode": "SCHEDULE",
+          "target": 7,
+          "frostProtection": 7,
+          "schedule": {
+            "monday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 420,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1080,
+                "value": {
+                  "target": 7
+                }
+              },
+              {
+                "start": 1260,
+                "value": {
+                  "target": 20
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "target": 7
+                }
+              }
+            ]
+          }
+        },
+        "isGroup": false
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000001",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1619025208161,
+        "lastSeen": 1745520318574,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895317911,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false
+          },
+          "powerConsumption": 0,
+          "onSince": 1673189770388,
+          "inUse": false,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_ACTION"
+          ]
+        },
+        "state": {
+          "name": "Plug 1",
+          "status": "OFF",
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          },
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000002",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1543675662699,
+        "lastSeen": 1734281036179,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895289031,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "powerConsumption": 1,
+          "onSince": 1777762367553,
+          "inUse": false,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_ACTION"
+          ]
+        },
+        "state": {
+          "name": "Plug 2",
+          "status": "ON",
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          },
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000003",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1512759057107,
+        "lastSeen": 1770200352575,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895287386,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "powerConsumption": 0,
+          "onSince": 1673213848248,
+          "inUse": false,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_ACTION"
+          ]
+        },
+        "state": {
+          "name": "Plug 3",
+          "status": "OFF",
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 1320,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1380,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ]
+          },
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000001",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1470158558350,
+        "lastSeen": 1774937545913,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775155587293,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 1",
+          "status": "OFF",
+          "brightness": 100,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 1095,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "brightness": 5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1350,
+                "value": {
+                  "actionType": "http://alertme.com/schema/json/configuration/configuration.device.action.generic.v1.json#",
+                  "status": "OFF"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000002",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1767908246495,
+        "lastSeen": 1777663934452,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1777664294498,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 2",
+          "status": "ON",
+          "brightness": 100,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000003",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1636833865349,
+        "lastSeen": 1771712343506,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895290942,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 3",
+          "status": "ON",
+          "brightness": 100,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000004",
+        "type": "tuneablelight",
+        "sortOrder": 8,
+        "created": 1714853620928,
+        "lastSeen": 1776191743321,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1776321032975,
+          "model": "TWBulb01UK",
+          "version": "11320002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11320002",
+            "upgrading": false
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "LIGHT_TUNEABLE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "colourTemperature": {
+            "min": 2700,
+            "max": 6535
+          },
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 4",
+          "status": "OFF",
+          "brightness": 100,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          },
+          "colourTemperature": 2703
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000005",
+        "type": "tuneablelight",
+        "sortOrder": 8,
+        "created": 1591207586685,
+        "lastSeen": 1775761526088,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775763889464,
+          "model": "TWBulb01UK",
+          "version": "11320002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11320002",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "LIGHT_TUNEABLE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "colourTemperature": {
+            "min": 2700,
+            "max": 6535
+          },
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 5",
+          "status": "ON",
+          "brightness": 5,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 4617.5,
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          },
+          "colourTemperature": 2703,
+          "securityZone": "Security Zone 1"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000006",
+        "type": "colourtuneablelight",
+        "sortOrder": 9,
+        "created": 1658855487200,
+        "lastSeen": 1775327751548,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775328532795,
+          "model": "RGBBulb02UK",
+          "version": "11110002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11110002",
+            "progress": 0,
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "LIGHT_COLOUR",
+            "LIGHT_TUNEABLE",
+            "SCHEDULE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "colourTemperature": {
+            "min": 2700,
+            "max": 6535
+          },
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 6",
+          "status": "OFF",
+          "hue": 45,
+          "saturation": 65,
+          "value": 100,
+          "brightness": 100,
+          "colourMode": "WHITE",
+          "colourTemperature": 3300,
+          "mode": "MANUAL",
+          "schedule": {
+            "monday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "tuesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "wednesday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "thursday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "friday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "saturday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ],
+            "sunday": [
+              {
+                "start": 390,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 510,
+                "value": {
+                  "status": "OFF"
+                }
+              },
+              {
+                "start": 960,
+                "value": {
+                  "brightness": 100,
+                  "colourTemperature": 2700,
+                  "colourMode": "WHITE",
+                  "status": "ON"
+                }
+              },
+              {
+                "start": 1290,
+                "value": {
+                  "status": "OFF"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000004",
+        "type": "motionsensor",
+        "sortOrder": 11,
+        "created": 1495823441915,
+        "lastSeen": 1776942606733,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1777057366558,
+          "model": "MOT003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "motion": {
+            "status": false,
+            "end": 1777756606863
+          },
+          "battery": 80,
+          "temperature": 19.25,
+          "deviceClass": "UNKNOWN",
+          "statusChanged": 1777756906863,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "MOTION_SENSOR",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Motion Sensor 1",
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000001",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1498308140974,
+        "lastSeen": 1693654330379,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1693655830425,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "status": "OPEN",
+          "statusChanged": 1692868648708,
+          "battery": 80,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "CONTACT_SENSOR",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 1",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 2",
+          "securityPlacement": "Door"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000002",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1693654666634,
+        "lastSeen": 1713255795610,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895438577,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false
+          },
+          "status": "CLOSED",
+          "statusChanged": 1777744255480,
+          "battery": 40,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "CONTACT_SENSOR",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 2",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 2",
+          "securityPlacement": "Door"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000003",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1500998859813,
+        "lastSeen": 1769953564769,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1769955064827,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "status": "CLOSED",
+          "statusChanged": 1769953396589,
+          "battery": 60,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "CONTACT_SENSOR",
+            "DEVICE_CLASS",
+            "SECURITY_DASHBOARD",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 3",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 3",
+          "securityPlacement": "Door"
+        }
+      }
+    ],
+    "devices": [
+      {
+        "id": "hub-0000-0000-0000-000000000001",
+        "type": "hub",
+        "sortOrder": 0,
+        "created": 1466594464511,
+        "lastSeen": 1777762849944,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "model": "SENSE",
+          "version": "1.0.0-7048-MARS36",
+          "manufacturer": "AlertMe",
+          "hardwareIdentifier": "HID-000",
+          "upgrade": {
+            "available": false,
+            "version": "1.0.0-7048-MARS36",
+            "upgrading": false
+          },
+          "power": "mains",
+          "signal": 100,
+          "uptime": 2867400,
+          "operation": "DEPLOYED",
+          "ipAddress": "000.168.0.00",
+          "macAddress": "00:0A:11:BB:22:CC",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "REBOOT_HUB",
+            "MIMIC_MODE",
+            "ActionsDaylight",
+            "ActionsMultiOutput",
+            "SLT5_INSTALL",
+            "DATA_SHARING",
+            "NOTIFICATIONS",
+            "CHANGE_WIFI",
+            "ACTIONS_2",
+            "INSTALL_PHILIPS_HUE",
+            "PRODUCT_GROUP",
+            "SECURITY_LITE",
+            "HOMEKIT",
+            "CAMERA_SIREN"
+          ],
+          "pmz": "OK",
+          "connection": "wifi",
+          "mimicMode": {
+            "consumers": [
+              "light-0000-0000-0000-000000000001",
+              "light-0000-0000-0000-000000000003",
+              "light-0000-0000-0000-000000000006",
+              "light-0000-0000-0000-000000000005",
+              "light-0000-0000-0000-000000000004"
+            ],
+            "enabled": false,
+            "start": "19:30",
+            "end": "02:00"
+          },
+          "assistedLiving": {
+            "noMorningActivity": false,
+            "noRecentActivity": false,
+            "nightTime": false,
+            "learning": true
+          },
+          "homeKit": {
+            "status": "ENABLED",
+            "paired": false,
+            "setupCode": "000-00-000",
+            "setupPayload": "X-HM://0000000000000"
+          }
+        },
+        "state": {
+          "name": "Hub",
+          "homeKitEnabled": true,
+          "homeKitPaired": false,
+          "discovery": false
+        }
+      },
+      {
+        "id": "thermostatui-0000-0000-0000-000000000001",
+        "type": "thermostatui",
+        "sortOrder": 1,
+        "created": 1498773546051,
+        "lastSeen": 1746353808969,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895434871,
+          "model": "SLT3",
+          "version": "03130406",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "03130406",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "battery",
+          "signal": 100,
+          "battery": 80,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "HEATING_ALERTS",
+            "GEOLOCATION",
+            "HOLIDAY_MODE",
+            "SLT3B_REPLACEMENT",
+            "SLT_REPLACEMENT",
+            "OPTIMUM_START"
+          ],
+          "modelVariant": "SLT3",
+          "zone": "boilermodule-0000-0000-0000-000000000001"
+        },
+        "state": {
+          "name": "Heating Zone 1",
+          "zoneName": "Heating Zone 1"
+        }
+      },
+      {
+        "id": "boilermodule-0000-0000-0000-000000000001",
+        "type": "boilermodule",
+        "sortOrder": 1,
+        "created": 1498773552677,
+        "lastSeen": 1761218641848,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895255878,
+          "model": "SLR1",
+          "version": "10094640",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 96,
+          "zone": "boilermodule-0000-0000-0000-000000000001",
+          "tui": "thermostatui-0000-0000-0000-000000000001",
+          "modelVariant": "SLR1",
+          "capabilities": [
+            "INFORMATION"
+          ],
+          "reset": false,
+          "initialisedStatus": "INITIALISED"
+        },
+        "state": {
+          "name": "Heating Zone 1",
+          "zoneName": "Heating Zone 1"
+        }
+      },
+      {
+        "id": "trv-0000-0000-0000-000000000001",
+        "type": "trv",
+        "sortOrder": 1,
+        "created": 1714990847683,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895303812,
+          "model": "TRV001",
+          "version": "0000023A",
+          "manufacturer": "Danfoss",
+          "upgrade": {
+            "available": false,
+            "progress": 0,
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "battery",
+          "signal": 100,
+          "battery": 40,
+          "eui64": "0000000000000000",
+          "calibration": {
+            "start": "2024-05-06T10:23:55.661+00:00",
+            "end": "2024-05-06T15:24:55.629+00:00",
+            "failureReason": "CANCELED",
+            "errorStates": []
+          },
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "TRV_CALIBRATION"
+          ]
+        },
+        "state": {
+          "name": "TRV Zone 1",
+          "control": "trvcontrol-0000-0000-0000-000000000001",
+          "zoneName": "TRV Zone 1",
+          "childLock": true,
+          "mountingMode": "VERTICAL",
+          "mountingModeActive": false,
+          "viewingAngle": "ANGLE_180",
+          "calibrationStatus": "CALIBRATED"
+        }
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000001",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1619025208161,
+        "lastSeen": 1745520318574,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895317911,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false
+          },
+          "power": "mains",
+          "signal": 100,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE"
+          ]
+        },
+        "state": {
+          "name": "Plug 1",
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000002",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1543675662699,
+        "lastSeen": 1734281036179,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895289031,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 100,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE"
+          ]
+        },
+        "state": {
+          "name": "Plug 2",
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "plug-0000-0000-0000-000000000003",
+        "type": "activeplug",
+        "sortOrder": 5,
+        "created": 1512759057107,
+        "lastSeen": 1770200352575,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895287386,
+          "model": "SLP2b",
+          "version": "01075700",
+          "manufacturer": "Computime",
+          "upgrade": {
+            "available": false,
+            "version": "01075700",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 100,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE"
+          ]
+        },
+        "state": {
+          "name": "Plug 3",
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000001",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1470158558350,
+        "lastSeen": 1774937545913,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775155587293,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 100,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 1"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000002",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1767908246495,
+        "lastSeen": 1777663934452,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1777664294498,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false
+          },
+          "power": "mains",
+          "signal": 100,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 2"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000003",
+        "type": "warmwhitelight",
+        "sortOrder": 7,
+        "created": 1636833865349,
+        "lastSeen": 1771712343506,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895290942,
+          "model": "FWBulb01",
+          "version": "11500002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11500002",
+            "upgrading": false
+          },
+          "power": "mains",
+          "signal": 100,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 3"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000004",
+        "type": "tuneablelight",
+        "sortOrder": 8,
+        "created": 1714853620928,
+        "lastSeen": 1776191743321,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1776321032975,
+          "model": "TWBulb01UK",
+          "version": "11320002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11320002",
+            "upgrading": false
+          },
+          "power": "mains",
+          "signal": 90,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 4"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000005",
+        "type": "tuneablelight",
+        "sortOrder": 8,
+        "created": 1591207586685,
+        "lastSeen": 1775761526088,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775763889464,
+          "model": "TWBulb01UK",
+          "version": "11320002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11320002",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 100,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 5",
+          "securityZone": "Security Zone 1"
+        }
+      },
+      {
+        "id": "light-0000-0000-0000-000000000006",
+        "type": "colourtuneablelight",
+        "sortOrder": 9,
+        "created": 1658855487200,
+        "lastSeen": 1775327751548,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1775328532795,
+          "model": "RGBBulb02UK",
+          "version": "11110002",
+          "manufacturer": "Aurora",
+          "upgrade": {
+            "available": false,
+            "version": "11110002",
+            "progress": 0,
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "mains",
+          "signal": 98,
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "GROUPABLE",
+            "MIMIC_MODE",
+            "IDENTIFY_DEVICE",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_ACTION"
+          ],
+          "isHue": false
+        },
+        "state": {
+          "name": "Light 6"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000004",
+        "type": "motionsensor",
+        "sortOrder": 11,
+        "created": 1495823441915,
+        "lastSeen": 1776942606733,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1777057366558,
+          "model": "MOT003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "battery",
+          "signal": 99,
+          "battery": 80,
+          "deviceClass": "UNKNOWN",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Motion Sensor 1",
+          "deviceClass": "UNKNOWN"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000001",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1498308140974,
+        "lastSeen": 1693654330379,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1693655830425,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "battery",
+          "signal": 71,
+          "battery": 80,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 1",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 2",
+          "securityPlacement": "Door"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000002",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1693654666634,
+        "lastSeen": 1713255795610,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": true,
+          "presenceLastChanged": 1774895438577,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false
+          },
+          "power": "battery",
+          "signal": 100,
+          "battery": 40,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 2",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 2",
+          "securityPlacement": "Door"
+        }
+      },
+      {
+        "id": "sensor-0000-0000-0000-000000000003",
+        "type": "contactsensor",
+        "sortOrder": 12,
+        "created": 1500998859813,
+        "lastSeen": 1769953564769,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1769955064827,
+          "model": "DWS003",
+          "version": "05042603",
+          "manufacturer": "HiveHome.com",
+          "upgrade": {
+            "available": false,
+            "version": "05042603",
+            "upgrading": false,
+            "status": "COMPLETE"
+          },
+          "power": "battery",
+          "signal": 99,
+          "battery": 60,
+          "deviceClass": "OTHER",
+          "capabilities": [
+            "INFORMATION",
+            "RENAME",
+            "DELETE",
+            "DEVICE_CLASS",
+            "SECURITY_DEVICE",
+            "SECURITY_ZONE",
+            "SECURITY_TOGGLE",
+            "SECURITY_TRIGGER"
+          ]
+        },
+        "state": {
+          "name": "Contact Sensor 3",
+          "deviceClass": "OTHER",
+          "securityZone": "Security Zone 3",
+          "securityPlacement": "Door"
+        }
+      },
+      {
+        "id": "keypad-0000-0000-0000-000000000001",
+        "type": "keypad",
+        "sortOrder": 15,
+        "created": 1657912191259,
+        "lastSeen": 1668111204596,
+        "parent": "hub-0000-0000-0000-000000000001",
+        "props": {
+          "online": false,
+          "presenceLastChanged": 1668111864603,
+          "model": "KEYPAD001",
+          "version": "01176550",
+          "manufacturer": "LDS",
+          "upgrade": {
+            "available": false,
+            "upgrading": false
+          },
+          "power": "battery",
+          "signal": 100,
+          "battery": 0,
+          "state": "DISARM",
+          "capabilities": [
+            "DELETE",
+            "INFORMATION",
+            "RENAME",
+            "SECURITY_DEVICE",
+            "SECURITY_TOGGLE"
+          ]
+        },
+        "state": {
+          "name": "Heating Zone 1"
+        }
+      }
+    ],
+    "holidayMode": {
+      "active": false,
+      "enabled": false,
+      "start": 1621203120000,
+      "end": 1801091820000,
+      "temperature": 7,
+      "status": "OK"
+    },
+    "security": {
+      "hasSecurityDevice": false
+    },
+    "actions": [
+      {
+        "id": "action-0000-0000-0000-000000000001",
+        "created": 1498848808604,
+        "name": "Contact Sensor 1 Opened",
+        "enabled": true,
+        "entitlements": [],
+        "entitled": true,
+        "template": "contact-sensor-canvas.1",
+        "events": [
+          {
+            "id": "sensor-0000-0000-0000-000000000001",
+            "group": "when",
+            "type": "contact-sensor",
+            "settings": {
+              "event": "OPEN"
+            }
+          },
+          {
+            "group": "then",
+            "type": "notification",
+            "settings": {
+              "email": false,
+              "push": true,
+              "sms": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "action-0000-0000-0000-000000000002",
+        "created": 1534796888391,
+        "name": "Motion Night Light",
+        "enabled": true,
+        "entitlements": [],
+        "entitled": true,
+        "template": "motion-sensor-light-dark-light-on-duration.1",
+        "events": [
+          {
+            "id": "sensor-0000-0000-0000-000000000004",
+            "group": "when",
+            "type": "motion-sensor"
+          },
+          {
+            "group": "while",
+            "type": "light-dark",
+            "settings": {
+              "period": "DARK",
+              "fromOffset": 0,
+              "untilOffset": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "action-0000-0000-0000-000000000003",
+        "created": 1543781304708,
+        "name": "Contact Sensor 3 Opened",
+        "enabled": true,
+        "entitlements": [],
+        "entitled": true,
+        "template": "contact-sensor-canvas.1",
+        "events": [
+          {
+            "id": "sensor-0000-0000-0000-000000000003",
+            "group": "when",
+            "type": "contact-sensor",
+            "settings": {
+              "event": "OPEN"
+            }
+          },
+          {
+            "group": "then",
+            "type": "notification",
+            "settings": {
+              "email": false,
+              "push": true,
+              "sms": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "action-0000-0000-0000-000000000004",
+        "created": 1712594463517,
+        "name": "Get a notification when there\u2019s motion",
+        "enabled": false,
+        "entitlements": [],
+        "entitled": true,
+        "template": "motion-sensor-notification.3",
+        "events": [
+          {
+            "id": "sensor-0000-0000-0000-000000000004",
+            "group": "when",
+            "type": "motion-sensor"
+          },
+          {
+            "group": "then",
+            "type": "notification",
+            "settings": {
+              "email": false,
+              "push": true,
+              "sms": false
+            }
+          }
+        ]
+      }
+    ],
+    "homes": {
+      "homes": [
+        {
+          "id": "home-0000-0000-0000-000000000001",
+          "name": "Home",
+          "address": "Address",
+          "location": {
+            "country": "GB",
+            "state": null,
+            "timeZone": "Europe/London",
+            "latitude": 98.82,
+            "longitude": -9.02,
+            "addressFirstLine": "Address",
+            "addressSecondLine": null,
+            "city": "City",
+            "postcode": "AAA BBB"
+          },
+          "primary": true,
+          "userType": "OWNER",
+          "homeUsers": {
+            "OWNER": [
+              "user-0000-0000-0000-000000000001"
+            ]
+          },
+          "owner": true,
+          "users": [],
+          "owners": [
+            "user-0000-0000-0000-000000000001"
+          ],
+          "homeTypes": [
+            "HIVE"
+          ],
+          "invitations": [
+            {
+              "invitationId": "invitation-0000-0000-0000-000000000001",
+              "recipient": "Recipient1",
+              "accepted": false,
+              "declined": false,
+              "expired": false,
+              "revoked": true,
+              "homeId": "home-0000-0000-0000-000000000001",
+              "userType": "SUPERUSER",
+              "invitedBy": "user:user-0000-0000-0000-000000000001",
+              "invitationType": null,
+              "expiresOn": 1611003564073,
+              "inviterFirstName": null,
+              "homeOwnerFirstName": null
+            },
+            {
+              "invitationId": "invitation-0000-0000-0000-000000000002",
+              "recipient": "Recipient2",
+              "accepted": true,
+              "declined": false,
+              "expired": false,
+              "revoked": false,
+              "homeId": "home-0000-0000-0000-000000000001",
+              "userType": "SECONDARY_USER",
+              "invitedBy": "user:user-0000-0000-0000-000000000001",
+              "invitationType": null,
+              "expiresOn": 1607622777368,
+              "inviterFirstName": null,
+              "homeOwnerFirstName": null
+            }
+          ],
+          "homePicture": null,
+          "shareOption": "FLEXIBLE",
+          "pets": null,
+          "notificationChannels": [
+            "PUSH"
+          ],
+          "pinId": "pin-0000-0000-0000-000000000001",
+          "userNicknames": {},
+          "proResponseProviders": [],
+          "homePhase": "Live",
+          "localisation": {
+            "currency": {
+              "code": "GBP",
+              "symbol": "\u00a3",
+              "subunits": "pence",
+              "subunitSymbol": "p"
+            },
+            "locale": "en_GB",
+            "tariff": {
+              "code": "GBPp",
+              "unit": "p/kWh",
+              "electricity": {
+                "minRate": 1,
+                "maxRate": 100,
+                "minAnnumkWh": 1000,
+                "maxAnnumkWh": 15000,
+                "minStandingCharge": 0,
+                "maxStandingCharge": 99
+              },
+              "gas": {
+                "minRate": 1,
+                "maxRate": 50,
+                "minAnnumkWh": 4000,
+                "maxAnnumkWh": 60000,
+                "minStandingCharge": 9,
+                "maxStandingCharge": 99
+              }
+            },
+            "customerSupport": {
+              "ev": {
+                "supportNumber": "03332021054"
+              }
+            }
+          }
+        }
+      ],
+      "entitlements": {
+        "homeTypeEntitlements": {
+          "HIVE": {
+            "homes": 2,
+            "usersPerType": {
+              "SECONDARY_USER": 2147483647,
+              "OUTER_CIRCLE_USER": 0,
+              "SUPERUSER": 2147483647,
+              "EXTERNAL_USER": 0
+            },
+            "usersPerHome": 2147483647
+          },
+          "ASSISTED_LIVING": {
+            "homes": 2147483647,
+            "usersPerType": {
+              "SECONDARY_USER": 2147483647,
+              "OUTER_CIRCLE_USER": 5,
+              "SUPERUSER": 5,
+              "EXTERNAL_USER": 3
+            },
+            "usersPerHome": 2147483647
+          },
+          "SECURITY": {
+            "homes": 0,
+            "usersPerType": {
+              "SECONDARY_USER": 0,
+              "OUTER_CIRCLE_USER": 0,
+              "SUPERUSER": 0,
+              "EXTERNAL_USER": 0
+            },
+            "usersPerHome": 0
+          }
+        },
+        "proResponseEntitlements": {},
+        "propertyEntitlements": 2,
+        "userEntitlements": 2147483647
+      }
+    }
+  }
+}
