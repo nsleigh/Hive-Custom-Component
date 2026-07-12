@@ -123,9 +123,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
 
     async def _async_set_holiday_mode(call: ServiceCall) -> None:
         """Handle the set_holiday_mode service call."""
+        # The Hive app itself only works to minute precision; truncate here
+        # so every caller (this integration's automations, a manual service
+        # call, anything else) gets the same clean minute-aligned start/end
+        # rather than whatever arbitrary seconds happened to be on the
+        # clock when the caller computed "now".
+        start = call.data["start"].replace(second=0, microsecond=0)
+        end = call.data["end"].replace(second=0, microsecond=0)
         try:
             success = await hive.hub.set_holiday_mode(
-                call.data["start"], call.data["end"], call.data["temperature"]
+                start, end, call.data["temperature"]
             )
         except (HTTPException, HiveApiError, HiveReauthRequired) as err:
             raise HomeAssistantError(f"Failed to set Hive holiday mode: {err}") from err
@@ -141,7 +148,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         # "start" or now is later (covers both a future start and a
         # start-now request, where Hive's own backend is typically the
         # slower part of the transition).
-        start_utc = dt_util.as_utc(call.data["start"])
+        start_utc = dt_util.as_utc(start)
         now_utc = dt_util.utcnow()
         if start_utc > now_utc:
             async_track_point_in_utc_time(hass, _async_refresh_holiday_sensor, start_utc)
