@@ -12,7 +12,7 @@ import voluptuous as vol
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_SCAN_INTERVAL
-from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.core import HomeAssistant, ServiceCall, callback
 from homeassistant.exceptions import (
     ConfigEntryAuthFailed,
     ConfigEntryNotReady,
@@ -20,6 +20,8 @@ from homeassistant.exceptions import (
 )
 from homeassistant.helpers import aiohttp_client, config_validation as cv, device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send
+from homeassistant.helpers.event import async_track_point_in_utc_time
+from homeassistant.util import dt as dt_util
 
 from .apyhiveapi import Auth, Hive
 from .apyhiveapi.helper.hive_exceptions import (
@@ -108,6 +110,20 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         if not success:
             raise HomeAssistantError("Hive rejected the set holiday mode request.")
         async_dispatcher_send(hass, DOMAIN)
+
+        # The Holiday Mode sensor otherwise only refreshes on its 30-minute
+        # poll or after a service call, so a scheduled -> active transition
+        # that happens purely because "start" has passed can sit stale for
+        # up to 30 minutes. Schedule a one-off refresh right at "start" so
+        # it updates promptly instead.
+        start_utc = dt_util.as_utc(call.data["start"])
+        if start_utc > dt_util.utcnow():
+
+            @callback
+            def _async_refresh_at_start(_now) -> None:
+                async_dispatcher_send(hass, DOMAIN)
+
+            async_track_point_in_utc_time(hass, _async_refresh_at_start, start_utc)
 
     async def _async_cancel_holiday_mode(call: ServiceCall) -> None:
         """Handle the cancel_holiday_mode service call."""
