@@ -416,7 +416,12 @@ class HiveHolidayModeSensor(_HiveHolidayModeSensorBase):
         else:
             self._attr_native_value = "off"
 
-        attrs = {}
+        # Hive's API intermittently omits start/end/temperature from an
+        # otherwise-valid response, even while active/enabled are reported
+        # correctly. Retain the last known value for a field rather than
+        # blanking it out, so a partial response doesn't cause the
+        # attributes to flicker empty between refreshes.
+        attrs = dict(getattr(self, "_attr_extra_state_attributes", None) or {})
         for key in ("start", "end"):
             epoch_ms = result.get(key)
             if epoch_ms is not None:
@@ -435,12 +440,12 @@ class _HiveHolidayModeDateSensor(_HiveHolidayModeSensorBase):
     _result_key: str
 
     def _update_from_result(self, result: dict) -> None:
+        # As with the attributes on HiveHolidayModeSensor, Hive's API can
+        # omit this field from an otherwise-valid response — retain the
+        # last known value rather than flickering to unknown.
         epoch_ms = result.get(self._result_key)
-        self._attr_native_value = (
-            datetime.fromtimestamp(epoch_ms / 1000, tz=timezone.utc)
-            if epoch_ms is not None
-            else None
-        )
+        if epoch_ms is not None:
+            self._attr_native_value = datetime.fromtimestamp(epoch_ms / 1000, tz=timezone.utc)
 
 
 class HiveHolidayStartSensor(_HiveHolidayModeDateSensor):
