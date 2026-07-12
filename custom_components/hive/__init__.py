@@ -22,7 +22,11 @@ from homeassistant.helpers import aiohttp_client, config_validation as cv, devic
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
 from .apyhiveapi import Auth, Hive
-from .apyhiveapi.helper.hive_exceptions import HiveApiError, HiveReauthRequired
+from .apyhiveapi.helper.hive_exceptions import (
+    HiveApiError,
+    HiveReauthRequired,
+    HiveUnknownConfiguration,
+)
 from .const import (
     DOMAIN,
     PLATFORM_LOOKUP,
@@ -63,6 +67,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         devices = await hive.session.startSession(hive_config)
     except HTTPException as error:
         _LOGGER.error("Could not connect to the internet: %s", error)
+        raise ConfigEntryNotReady from error
+    except HiveUnknownConfiguration as error:
+        # Raised when the Hive API returns no devices/products, which also
+        # happens on a transient timeout during a cold boot (no cached data
+        # yet to fall back on). Treat as retryable rather than a hard error
+        # so HA's automatic setup-retry backoff picks it up.
+        _LOGGER.error("Hive API returned no devices: %s", error)
         raise ConfigEntryNotReady from error
     except HiveReauthRequired as err:
         raise ConfigEntryAuthFailed from err
