@@ -1,6 +1,6 @@
 """Support for the Hive sensors."""
 
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -14,11 +14,17 @@ from homeassistant.const import (
     UnitOfPower,
     UnitOfTemperature,
 )
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from homeassistant.helpers.event import async_track_time_interval
 
 from . import HiveConfigEntry
+from .const import DOMAIN
 from .entity import HiveEntity
+
+HOLIDAY_MODE_SCAN_INTERVAL = timedelta(minutes=30)
 
 PARALLEL_UPDATES = 0
 SCAN_INTERVAL = timedelta(seconds=15)
@@ -91,17 +97,19 @@ async def async_setup_entry(
     """Set up Hive thermostat based on a config entry."""
     hive = entry.runtime_data
     devices = hive.session.deviceList.get("sensor")
-    if not devices:
-        return
-    async_add_entities(
-        (
-            HiveSensorEntity(hive, dev, description)
-            for dev in devices
-            for description in SENSOR_TYPES
-            if dev["hiveType"] == description.key
-        ),
-        True,
-    )
+    entities = [
+        HiveSensorEntity(hive, dev, description)
+        for dev in devices or []
+        for description in SENSOR_TYPES
+        if dev["hiveType"] == description.key
+    ]
+
+    hub_id = hive.session.hub_id
+    if hub_id:
+        entities.append(HiveHolidayModeSensor(hive, hub_id))
+
+    if entities:
+        async_add_entities(entities, True)
 
 
 class HiveSensorEntity(HiveEntity, SensorEntity):
@@ -298,3 +306,70 @@ class HiveSensorEntity(HiveEntity, SensorEntity):
             s_a.update({"Schedule not active": ""})
 
         return s_a
+
+
+class HiveHolidayModeSensor(SensorEntity):
+    """Sensor exposing Hive's whole-home Holiday Mode status.
+
+    Unlike the other sensors in this platform, Holiday Mode is a hub-level
+    feature (no per-device Hive product backs it), and get_holiday_mode()
+    always makes a fresh API call rather than going through the
+    rate-limited device polling cache — so this entity manages its own,
+    much longer, poll interval instead of relying on the module-level
+    SCAN_INTERVAL the other sensors use.
+    """
+
+    _attr_should_poll = False
+    _attr_device_class = SensorDeviceClass.ENUM
+    _attr_options = ["off", "scheduled", "active"]
+    _attr_icon = "mdi:palm-tree"
+    _attr_name = "Holiday Mode"
+
+    def __init__(self, hive, hub_id: str) -> None:
+        """Initialise the Holiday Mode sensor."""
+        self.hive = hive
+        self._attr_unique_id = f"{hub_id}-HolidayMode"
+        self._attr_device_info = DeviceInfo(identifiers={(DOMAIN, hub_id)})
+
+    async def async_added_to_hass(self) -> None:
+        """Subscribe to updates and start polling once added."""
+        self.async_on_remove(
+            async_dispatcher_connect(self.hass, DOMAIN, self._async_schedule_refresh)
+        )
+        self.async_on_remove(
+            async_track_time_interval(
+                self.hass, self._async_schedule_refresh, HOLIDAY_MODE_SCAN_INTERVAL
+            )
+        )
+        await self.async_update_ha_state(force_refresh=True)
+
+    @callback
+    def _async_schedule_refresh(self, _now: datetime | None = None) -> None:
+        """Schedule a state refresh."""
+        self.async_schedule_update_ha_state(force_refresh=True)
+
+    async def async_update(self) -> None:
+        """Fetch the latest Holiday Mode status from Hive."""
+        result = await self.hive.hub.get_holiday_mode()
+        if result is None:
+            self._attr_available = False
+            return
+
+        self._attr_available = True
+        if result.get("active"):
+            self._attr_native_value = "active"
+        elif result.get("enabled"):
+            self._attr_native_value = "scheduled"
+        else:
+            self._attr_native_value = "off"
+
+        attrs = {}
+        for key in ("start", "end"):
+            epoch_ms = result.get(key)
+            if epoch_ms is not None:
+                attrs[key] = datetime.fromtimestamp(
+                    epoch_ms / 1000, tz=timezone.utc
+                ).isoformat()
+        if result.get("temperature") is not None:
+            attrs["temperature"] = result["temperature"]
+        self._attr_extra_state_attributes = attrs

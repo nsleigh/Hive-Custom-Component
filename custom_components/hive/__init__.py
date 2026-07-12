@@ -8,22 +8,43 @@ import logging
 from typing import Any, Concatenate
 
 from aiohttp.web_exceptions import HTTPException
+import voluptuous as vol
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_SCAN_INTERVAL
-from homeassistant.core import HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
-from homeassistant.helpers import aiohttp_client, device_registry as dr
+from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.exceptions import (
+    ConfigEntryAuthFailed,
+    ConfigEntryNotReady,
+    HomeAssistantError,
+)
+from homeassistant.helpers import aiohttp_client, config_validation as cv, device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
 from .apyhiveapi import Auth, Hive
-from .apyhiveapi.helper.hive_exceptions import HiveReauthRequired
-from .const import DOMAIN, PLATFORM_LOOKUP, PLATFORMS
+from .apyhiveapi.helper.hive_exceptions import HiveApiError, HiveReauthRequired
+from .const import (
+    DOMAIN,
+    PLATFORM_LOOKUP,
+    PLATFORMS,
+    SERVICE_CANCEL_HOLIDAY_MODE,
+    SERVICE_SET_HOLIDAY_MODE,
+)
 from .entity import HiveEntity
 
 _LOGGER = logging.getLogger(__name__)
 
 type HiveConfigEntry = ConfigEntry[Hive]
+
+SET_HOLIDAY_MODE_SCHEMA = vol.Schema(
+    {
+        vol.Required("start"): cv.datetime,
+        vol.Required("end"): cv.datetime,
+        vol.Required("temperature"): vol.All(
+            vol.Coerce(float), vol.Range(min=7, max=35)
+        ),
+    }
+)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool:
@@ -63,6 +84,40 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
             for ha_type, hive_type in PLATFORM_LOOKUP.items()
             if devices.get(hive_type)
         ],
+    )
+
+    async def _async_set_holiday_mode(call: ServiceCall) -> None:
+        """Handle the set_holiday_mode service call."""
+        try:
+            success = await hive.hub.set_holiday_mode(
+                call.data["start"], call.data["end"], call.data["temperature"]
+            )
+        except (HTTPException, HiveApiError, HiveReauthRequired) as err:
+            raise HomeAssistantError(f"Failed to set Hive holiday mode: {err}") from err
+        if not success:
+            raise HomeAssistantError("Hive rejected the set holiday mode request.")
+        async_dispatcher_send(hass, DOMAIN)
+
+    async def _async_cancel_holiday_mode(call: ServiceCall) -> None:
+        """Handle the cancel_holiday_mode service call."""
+        try:
+            success = await hive.hub.cancel_holiday_mode()
+        except (HTTPException, HiveApiError, HiveReauthRequired) as err:
+            raise HomeAssistantError(
+                f"Failed to cancel Hive holiday mode: {err}"
+            ) from err
+        if not success:
+            raise HomeAssistantError("Hive rejected the cancel holiday mode request.")
+        async_dispatcher_send(hass, DOMAIN)
+
+    hass.services.async_register(
+        DOMAIN,
+        SERVICE_SET_HOLIDAY_MODE,
+        _async_set_holiday_mode,
+        schema=SET_HOLIDAY_MODE_SCHEMA,
+    )
+    hass.services.async_register(
+        DOMAIN, SERVICE_CANCEL_HOLIDAY_MODE, _async_cancel_holiday_mode
     )
 
     return True
