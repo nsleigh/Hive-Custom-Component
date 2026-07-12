@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Awaitable, Callable, Coroutine
+from datetime import datetime, timedelta
 from functools import wraps
 import logging
 from typing import Any, Concatenate
@@ -41,6 +42,14 @@ from .entity import HiveEntity
 _LOGGER = logging.getLogger(__name__)
 
 type HiveConfigEntry = ConfigEntry[Hive]
+
+# Hive's backend can take a few minutes to actually flip a schedule to
+# active/off even after the requested start/cancel has technically taken
+# effect, so a single refresh right after the service call (or even right
+# at "start") can still catch a stale read. Poll a few extra times over
+# the following five minutes to pick up the eventual transition sooner
+# than the sensor's normal 30-minute interval would.
+HOLIDAY_MODE_CATCHUP_DELAYS = (30, 90, 180, 300)
 
 SET_HOLIDAY_MODE_SCHEMA = vol.Schema(
     {
@@ -99,6 +108,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         ],
     )
 
+    @callback
+    def _async_refresh_holiday_sensor(_now: datetime | None = None) -> None:
+        async_dispatcher_send(hass, DOMAIN)
+
+    def _schedule_holiday_catchup_refreshes(anchor: datetime) -> None:
+        """Schedule a few extra refreshes after `anchor`."""
+        for delay in HOLIDAY_MODE_CATCHUP_DELAYS:
+            async_track_point_in_utc_time(
+                hass,
+                _async_refresh_holiday_sensor,
+                anchor + timedelta(seconds=delay),
+            )
+
     async def _async_set_holiday_mode(call: ServiceCall) -> None:
         """Handle the set_holiday_mode service call."""
         try:
@@ -114,16 +136,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         # The Holiday Mode sensor otherwise only refreshes on its 30-minute
         # poll or after a service call, so a scheduled -> active transition
         # that happens purely because "start" has passed can sit stale for
-        # up to 30 minutes. Schedule a one-off refresh right at "start" so
-        # it updates promptly instead.
+        # up to 30 minutes. Refresh right at "start" for a future-dated
+        # schedule, then run the catch-up burst anchored at whichever of
+        # "start" or now is later (covers both a future start and a
+        # start-now request, where Hive's own backend is typically the
+        # slower part of the transition).
         start_utc = dt_util.as_utc(call.data["start"])
-        if start_utc > dt_util.utcnow():
-
-            @callback
-            def _async_refresh_at_start(_now) -> None:
-                async_dispatcher_send(hass, DOMAIN)
-
-            async_track_point_in_utc_time(hass, _async_refresh_at_start, start_utc)
+        now_utc = dt_util.utcnow()
+        if start_utc > now_utc:
+            async_track_point_in_utc_time(hass, _async_refresh_holiday_sensor, start_utc)
+        _schedule_holiday_catchup_refreshes(max(start_utc, now_utc))
 
     async def _async_cancel_holiday_mode(call: ServiceCall) -> None:
         """Handle the cancel_holiday_mode service call."""
@@ -136,6 +158,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         if not success:
             raise HomeAssistantError("Hive rejected the cancel holiday mode request.")
         async_dispatcher_send(hass, DOMAIN)
+        _schedule_holiday_catchup_refreshes(dt_util.utcnow())
 
     hass.services.async_register(
         DOMAIN,
