@@ -138,14 +138,12 @@ class HiveSensorEntity(HiveEntity, SensorEntity):
 
     def __init__(
         self,
-        hass: HomeAssistant,
-        entry: HiveConfigEntry,
         hive: Hive,
         hive_device: dict[str, Any],
         entity_description: HiveSensorEntityDescription,
     ) -> None:
         """Initialise hive sensor."""
-        super().__init__(hass, entry, hive, hive_device)
+        super().__init__(hive, hive_device)
         self.entity_description = entity_description
 
     async def async_update(self):
