@@ -110,7 +110,7 @@ async def async_setup_entry(
     hive = entry.runtime_data
     devices = hive.session.deviceList.get("sensor")
     entities = [
-        HiveSensorEntity(hass, entry, hive, dev, description)
+        HiveSensorEntity(hive, dev, description)
         for dev in devices or []
         for description in SENSOR_TYPES
         if dev["hiveType"] == description.key
