@@ -27,6 +27,7 @@ from homeassistant.util import dt as dt_util
 from .apyhiveapi import Auth, Hive
 from .apyhiveapi.helper.hive_exceptions import (
     HiveApiError,
+    HiveConnectionError,
     HiveReauthRequired,
     HiveUnknownConfiguration,
 )
@@ -85,6 +86,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         # yet to fall back on). Treat as retryable rather than a hard error
         # so HA's automatic setup-retry backoff picks it up.
         _LOGGER.error("Hive API returned no devices: %s", error)
+        raise ConfigEntryNotReady from error
+    except HiveConnectionError as error:
+        # Raised when Hive can't be reached during startup (e.g. an SSO or
+        # device-fetch timeout). Transient, so let HA retry setup.
+        _LOGGER.error("Could not reach Hive: %s", error)
         raise ConfigEntryNotReady from error
     except HiveReauthRequired as err:
         raise ConfigEntryAuthFailed from err
