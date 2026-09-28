@@ -172,6 +172,10 @@ class SwitchCompatMixin:
 class WaterHeaterCompatMixin:
     """CamelCase aliases for WaterHeater (hotwater) public methods."""
 
+    async def get_boost(self, device: Device):
+        """Alias for get_boost_status, used by the Hotwater_Boost sensor."""
+        return await self.get_boost_status(device)  # type: ignore[attr-defined]
+
     async def getBoost(self, device: Device):  # pylint: disable=invalid-name
         """Backwards-compatible alias for get_boost_status."""
         return await self.get_boost_status(device)  # type: ignore[attr-defined]
