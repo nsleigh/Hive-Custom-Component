@@ -121,10 +121,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
     def _schedule_holiday_catchup_refreshes(anchor: datetime) -> None:
         """Schedule a few extra refreshes after `anchor`."""
         for delay in HOLIDAY_MODE_CATCHUP_DELAYS:
-            async_track_point_in_utc_time(
-                hass,
-                _async_refresh_holiday_sensor,
-                anchor + timedelta(seconds=delay),
+            entry.async_on_unload(
+                async_track_point_in_utc_time(
+                    hass,
+                    _async_refresh_holiday_sensor,
+                    anchor + timedelta(seconds=delay),
+                )
             )
 
     async def _async_set_holiday_mode(call: ServiceCall) -> None:
@@ -157,7 +159,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
         start_utc = dt_util.as_utc(start)
         now_utc = dt_util.utcnow()
         if start_utc > now_utc:
-            async_track_point_in_utc_time(hass, _async_refresh_holiday_sensor, start_utc)
+            entry.async_on_unload(
+                async_track_point_in_utc_time(
+                    hass, _async_refresh_holiday_sensor, start_utc
+                )
+            )
         _schedule_holiday_catchup_refreshes(max(start_utc, now_utc))
 
     async def _async_cancel_holiday_mode(call: ServiceCall) -> None:
@@ -182,6 +188,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool
     hass.services.async_register(
         DOMAIN, SERVICE_CANCEL_HOLIDAY_MODE, _async_cancel_holiday_mode
     )
+
+    @callback
+    def _async_remove_holiday_services() -> None:
+        hass.services.async_remove(DOMAIN, SERVICE_SET_HOLIDAY_MODE)
+        hass.services.async_remove(DOMAIN, SERVICE_CANCEL_HOLIDAY_MODE)
+
+    entry.async_on_unload(_async_remove_holiday_services)
 
     return True
 
