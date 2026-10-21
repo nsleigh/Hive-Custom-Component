@@ -1,20 +1,21 @@
 {
   "domain": "hive",
   "name": "Hive",
+  "codeowners": ["@KJonline"],
   "config_flow": true,
-  "documentation": "https://www.home-assistant.io/integrations/hive",
-  "issue_tracker": "https://github.com/Pyhass/Hive-Custom-Component/issues",
-  "version": "2026.8.0",
+  "documentation": "https://github.com/Pyhass/Hive-Custom-Component",
   "homekit": {
     "models": ["HHKBridge*"]
   },
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Pyhass/Hive-Custom-Component/issues",
+  "loggers": ["custom_components.hive.apyhiveapi"],
   "requirements": [
     "boto3>=1.34",
     "botocore>=1.34",
     "requests",
     "pyquery"
   ],
-  "codeowners": ["@KJonline"],
-  "iot_class": "cloud_polling",
-  "loggers": ["custom_components.hive.apyhiveapi"]
+  "version": "2026.8.0"
 }
