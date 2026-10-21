@@ -4,7 +4,6 @@ import logging
 from datetime import datetime
 from typing import Any
 
-from ..helper.compat_aliases import HubCompatMixin
 from ..helper.const import HIVETOHA, HTTP_OK
 from ..helper.device_handler_base import BaseDeviceHandler
 from ..helper.hivedataclasses import Device
@@ -12,7 +11,7 @@ from ..helper.hivedataclasses import Device
 _LOGGER = logging.getLogger(__name__)
 
 
-class HiveHub(HubCompatMixin, BaseDeviceHandler):
+class HiveHub(BaseDeviceHandler):
     """Hive hub.
 
     Returns:
