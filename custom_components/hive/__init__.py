@@ -25,11 +25,6 @@ from homeassistant.helpers.event import async_track_point_in_utc_time
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.util import dt as dt_util
 
-# Core 2026.11 moved the boost_* entity services out of the climate /
-# water_heater platforms into hive/services.py, registered from core's
-# async_setup. This component replaces the hive domain, so call it here.
-from homeassistant.components.hive.services import async_setup_services
-
 from .apyhiveapi import Auth, Hive
 from .apyhiveapi.helper.hive_exceptions import (
     HiveApiError,
@@ -45,6 +40,15 @@ from .const import (
     SERVICE_SET_HOLIDAY_MODE,
 )
 from .entity import HiveEntity
+
+try:
+    # Home Assistant 2026.11 moved the boost_* entity services out of the
+    # climate / water_heater platforms (which this component re-exports) into
+    # hive/services.py, registered from core's async_setup. This component
+    # replaces the hive domain, so core's async_setup never runs: call it here.
+    from homeassistant.components.hive.services import async_setup_services
+except ImportError:  # Home Assistant < 2026.11: the platforms register them.
+    async_setup_services = None
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -74,7 +78,8 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Hive integration."""
-    async_setup_services(hass)
+    if async_setup_services is not None:
+        async_setup_services(hass)
     return True
 
 
