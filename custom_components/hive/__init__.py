@@ -22,7 +22,13 @@ from homeassistant.exceptions import (
 from homeassistant.helpers import aiohttp_client, config_validation as cv, device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.event import async_track_point_in_utc_time
+from homeassistant.helpers.typing import ConfigType
 from homeassistant.util import dt as dt_util
+
+# Core 2026.11 moved the boost_* entity services out of the climate /
+# water_heater platforms into hive/services.py, registered from core's
+# async_setup. This component replaces the hive domain, so call it here.
+from homeassistant.components.hive.services import async_setup_services
 
 from .apyhiveapi import Auth, Hive
 from .apyhiveapi.helper.hive_exceptions import (
@@ -61,6 +67,15 @@ SET_HOLIDAY_MODE_SCHEMA = vol.Schema(
         ),
     }
 )
+
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    """Set up the Hive integration."""
+    async_setup_services(hass)
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> bool:
