@@ -88,6 +88,21 @@ class HiveAuthAsync(DeviceRegistrationMixin):
         self._region: str | None = None
         self.client: Any = None
 
+    @property
+    def username(self) -> str:
+        """Return the Hive username, normalised for Cognito."""
+        return self._username
+
+    @username.setter
+    def username(self, value: str) -> None:
+        """Store the username trimmed and lower-cased.
+
+        Hive's Cognito pool treats the email as case-sensitive, so a
+        capitalised address (e.g. from mobile autocapitalisation) fails
+        with an invalid-password error even though the account exists.
+        """
+        self._username = value.strip().lower() if isinstance(value, str) else value
+
     async def async_init(self):
         """Initialise async variables."""
         self.loop = asyncio.get_running_loop()
@@ -412,6 +427,11 @@ class HiveAuthAsync(DeviceRegistrationMixin):
         except botocore.exceptions.EndpointConnectionError as err:
             _LOGGER.error("Device login failed: cannot reach endpoint.")
             raise HiveApiError from err
+
+        if result and "AuthenticationResult" in result:
+            # Record the access token and issue time so get_device_data() reports
+            # when these tokens were created, not None, after a device login.
+            self._store_auth_result(result)
 
         _LOGGER.debug("device_login - Device authentication completed successfully.")
         return result
