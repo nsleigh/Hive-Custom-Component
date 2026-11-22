@@ -2,14 +2,14 @@
 
 from unittest.mock import AsyncMock, MagicMock
 
-from apyhiveapi.helper.hive_exceptions import (
+from custom_components.hive.apyhiveapi.helper.hive_exceptions import (
     HiveApiError,
     HiveInvalid2FACode,
     HiveInvalidPassword,
     HiveInvalidUsername,
 )
 import pytest
-from pytest_homeassistant_custom_component.common import MockConfigEntry
+from pytest_homeassistant.common import MockConfigEntry
 
 from homeassistant.config_entries import SOURCE_USER
 from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME

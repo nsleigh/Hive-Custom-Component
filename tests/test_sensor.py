@@ -1,11 +1,11 @@
 """Tests for the Hive sensors added by this component."""
 
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-from pytest_homeassistant_custom_component.common import MockConfigEntry
+from pytest_homeassistant.common import MockConfigEntry
 
 from homeassistant.const import PERCENTAGE, STATE_UNAVAILABLE, STATE_UNKNOWN
 from homeassistant.core import HomeAssistant
@@ -25,7 +25,7 @@ async def _setup(hass: HomeAssistant, entry: MockConfigEntry) -> None:
 async def test_battery_sensor(
     hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
 ) -> None:
-    """Battery level is exposed as a diagnostic percentage sensor."""
+    """Battery level is a diagnostic percentage sensor with long-term statistics."""
     await _setup(hass, mock_config_entry)
 
     state = hass.states.get("sensor.lounge_trv_battery")
@@ -33,6 +33,7 @@ async def test_battery_sensor(
     assert state.state == "87"
     assert state.attributes["unit_of_measurement"] == PERCENTAGE
     assert state.attributes["device_class"] == "battery"
+    assert state.attributes["state_class"] == "measurement"
 
     entry = er.async_get(hass).async_get("sensor.lounge_trv_battery")
     assert entry.unique_id == "trv-1-Battery"
@@ -65,7 +66,7 @@ async def test_heating_mode_sensor(
     hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
 ) -> None:
     """Heating mode is an enum sensor with lower-cased state."""
-    mock_hive.heating.getScheduleNowNextLater = AsyncMock(return_value=None)
+    mock_hive.heating.get_schedule_now_next_later = AsyncMock(return_value=None)
 
     await _setup(hass, mock_config_entry)
 
@@ -91,7 +92,7 @@ async def test_hotwater_mode_schedule_attributes(
             "End_DateTime": datetime(2026, 1, 1, end, 0),
         }
 
-    mock_hive.hotwater.getScheduleNowNextLater = AsyncMock(
+    mock_hive.hotwater.get_schedule_now_next_later = AsyncMock(
         return_value={"now": slot("ON", 6, 8), "next": slot("OFF", 8, 17)}
     )
 
@@ -184,7 +185,7 @@ async def test_heating_mode_schedule_attributes(
             "End_DateTime": datetime(2026, 1, 1, end, 0),
         }
 
-    mock_hive.heating.getScheduleNowNextLater = AsyncMock(
+    mock_hive.heating.get_schedule_now_next_later = AsyncMock(
         return_value={
             "now": slot(20, 6, 9),
             "next": slot(16, 9, 17),
@@ -224,8 +225,8 @@ async def test_incomplete_schedule(
     schedule: dict[str, Any],
 ) -> None:
     """Schedule slots missing a target, status or time are left out."""
-    mock_hive.heating.getScheduleNowNextLater = AsyncMock(return_value=schedule)
-    mock_hive.hotwater.getScheduleNowNextLater = AsyncMock(return_value=schedule)
+    mock_hive.heating.get_schedule_now_next_later = AsyncMock(return_value=schedule)
+    mock_hive.hotwater.get_schedule_now_next_later = AsyncMock(return_value=schedule)
 
     await _setup(hass, mock_config_entry)
 
@@ -244,7 +245,7 @@ async def test_hotwater_mode_later_slot(
     hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
 ) -> None:
     """Hot water shows the later slot when Hive sends one."""
-    mock_hive.hotwater.getScheduleNowNextLater = AsyncMock(
+    mock_hive.hotwater.get_schedule_now_next_later = AsyncMock(
         return_value={
             "later": {
                 "value": {"status": "ON"},
@@ -268,7 +269,7 @@ async def test_hotwater_mode_no_schedule(
     hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
 ) -> None:
     """Without a schedule the hot water sensor says so."""
-    mock_hive.hotwater.getScheduleNowNextLater = AsyncMock(return_value=None)
+    mock_hive.hotwater.get_schedule_now_next_later = AsyncMock(return_value=None)
 
     await _setup(hass, mock_config_entry)
 
@@ -284,7 +285,7 @@ async def test_mode_sensor_without_state(
     hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
 ) -> None:
     """A mode sensor with no state reads unknown instead of failing."""
-    mock_hive.heating.getScheduleNowNextLater = AsyncMock(return_value=None)
+    mock_hive.heating.get_schedule_now_next_later = AsyncMock(return_value=None)
 
     await _setup(hass, mock_config_entry)
 
@@ -297,9 +298,137 @@ async def test_sensor_platform_without_devices(
     """The sensor platform adds nothing when Hive reports no sensors."""
     hive = MagicMock()
     hive.session.deviceList = {"sensor": []}
+    hive.session.hub_id = None  # vendor branch: hub id would add holiday sensors
     mock_config_entry.runtime_data = hive
     add_entities = MagicMock()
 
     await sensor.async_setup_entry(hass, mock_config_entry, add_entities)
 
     add_entities.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    "sensor_devices",
+    [[make_device("Heating_Current_Temperature", 18.5, name="Heating")]],
+)
+async def test_current_temperature_attributes(
+    hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
+) -> None:
+    """The heating current temperature shows min/max and how far it is from target."""
+    mock_hive.heating.minmax_temperature = AsyncMock(
+        return_value={
+            "TodayMin": 17.0,
+            "TodayMax": 21.5,
+            "RestartMin": 16.0,
+            "RestartMax": 22.0,
+        }
+    )
+    mock_hive.heating.get_target_temperature = AsyncMock(return_value=21.0)
+
+    await _setup(hass, mock_config_entry)
+
+    attributes = hass.states.get(
+        "sensor.heating_heating_current_temperature"
+    ).attributes
+    assert attributes["Today Min / Max"] == "17.0 °C / 21.5 °C"
+    assert attributes["Restart Min / Max"] == "16.0 °C / 22.0 °C"
+    assert attributes["Current Temperature"] == 18.5
+    assert attributes["Target Temperature"] == 21.0
+    assert attributes["Temperature Difference"] == 2.5
+
+
+@pytest.mark.parametrize(
+    "sensor_devices",
+    [[make_device("Heating_Current_Temperature", 18.5, name="Heating")]],
+)
+async def test_current_temperature_without_target(
+    hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
+) -> None:
+    """No target or min/max data leaves the attributes out instead of failing."""
+    await _setup(hass, mock_config_entry)
+
+    state = hass.states.get("sensor.heating_heating_current_temperature")
+    assert state.state == "18.5"
+    assert not {
+        "Today Min / Max",
+        "Current Temperature",
+        "Temperature Difference",
+    } & set(state.attributes)
+
+
+@pytest.mark.parametrize(
+    ("sensor_devices", "entity_id", "boost_api"),
+    [
+        (
+            [make_device("Heating_Boost", "ON", name="Thermostat")],
+            "sensor.thermostat_heating_boost_ends",
+            ("heating", "get_boost_status"),
+        ),
+        (
+            [make_device("Hotwater_Boost", "ON", name="Hot Water")],
+            "sensor.hot_water_hotwater_boost_ends",
+            ("hotwater", "get_boost"),
+        ),
+    ],
+)
+async def test_boost_ends_sensor(
+    hass: HomeAssistant,
+    mock_hive: MagicMock,
+    mock_config_entry: MockConfigEntry,
+    freezer: Any,
+    entity_id: str,
+    boost_api: tuple[str, str],
+) -> None:
+    """While boost is on, the sensor holds the time it ends."""
+    freezer.move_to("2026-11-21 10:00:30+00:00")
+    api = getattr(mock_hive, boost_api[0])
+    setattr(api, boost_api[1], AsyncMock(return_value="ON"))
+    api.get_boost_time = AsyncMock(return_value=30)
+
+    await _setup(hass, mock_config_entry)
+
+    state = hass.states.get(entity_id)
+    assert state.state == "2026-11-21T10:30:00+00:00"
+    assert state.attributes["device_class"] == "timestamp"
+
+    entry = er.async_get(hass).async_get(entity_id)
+    assert entry.unique_id.endswith("_Boost-end")
+
+
+@pytest.mark.parametrize(
+    "sensor_devices", [[make_device("Heating_Boost", "OFF", name="Thermostat")]]
+)
+async def test_boost_ends_sensor_when_off(
+    hass: HomeAssistant, mock_hive: MagicMock, mock_config_entry: MockConfigEntry
+) -> None:
+    """With no boost running, the end time is unknown."""
+    await _setup(hass, mock_config_entry)
+
+    assert hass.states.get("sensor.thermostat_heating_boost_ends").state == (
+        STATE_UNKNOWN
+    )
+
+
+@pytest.mark.parametrize(
+    ("previous", "minutes", "expected"),
+    [
+        # Within a minute of the last estimate: keep it, so the state doesn't wobble.
+        (datetime(2026, 11, 21, 10, 30, tzinfo=UTC), 29, "10:30"),
+        # Boost extended: take the new time.
+        (datetime(2026, 11, 21, 10, 30, tzinfo=UTC), 60, "11:00"),
+        # Boost stopped or bad data: unknown.
+        (datetime(2026, 11, 21, 10, 30, tzinfo=UTC), None, None),
+        (None, "not a number", None),
+    ],
+)
+def test_boost_end_is_steady(
+    freezer: Any, previous: datetime | None, minutes: Any, expected: str | None
+) -> None:
+    """The end time only moves when the boost changes, not on every poll."""
+    freezer.move_to("2026-11-21 10:00:40+00:00")
+    entity = sensor.HiveBoostEndSensorEntity.__new__(sensor.HiveBoostEndSensorEntity)
+    entity._attr_native_value = previous
+
+    result = entity._boost_end(minutes is not None, minutes)
+
+    assert (result.strftime("%H:%M") if result else None) == expected
