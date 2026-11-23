@@ -17,7 +17,7 @@ import boto3
 import botocore
 
 from ..helper.hive_exceptions import (
-    HiveApiError,
+    HiveConnectionError,
     HiveFailedToRefreshTokens,
     HiveInvalid2FACode,
     HiveInvalidDeviceAuthentication,
@@ -103,6 +103,21 @@ class HiveAuthAsync:
         self.__client_id = None
         self.__region = None
         self.client = None
+
+    @property
+    def username(self) -> str:
+        """Return the Hive username, normalised for Cognito."""
+        return self._username
+
+    @username.setter
+    def username(self, value: str) -> None:
+        """Store the username trimmed and lower-cased.
+
+        Hive's Cognito pool treats the email as case-sensitive, so a
+        capitalised address (e.g. from mobile autocapitalisation) fails
+        with an invalid-password error even though the account exists.
+        """
+        self._username = value.strip().lower() if isinstance(value, str) else value
 
     async def async_init(self):
         """Initialise async variables."""
@@ -390,7 +405,7 @@ class HiveAuthAsync:
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "EndpointConnectionError":
                 _LOGGER.error("Cognito auth failed: cannot reach endpoint.")
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         if response["ChallengeName"] == self.PASSWORD_VERIFIER_CHALLENGE:
             _LOGGER.debug("login - Processing PASSWORD_VERIFIER challenge.")
@@ -421,7 +436,7 @@ class HiveAuthAsync:
                     _LOGGER.error(
                         "Cognito auth challenge failed: cannot reach endpoint."
                     )
-                    raise HiveApiError from err
+                    raise HiveConnectionError from err
 
             _LOGGER.debug("login - SRP auth challenge completed successfully.")
 
@@ -484,7 +499,7 @@ class HiveAuthAsync:
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "EndpointConnectionError":
                 _LOGGER.error("Device login failed: cannot reach endpoint.")
-                raise HiveApiError from err
+                raise HiveConnectionError from err
             raise HiveInvalidDeviceAuthentication from err
 
         _LOGGER.debug("device_login - Device authentication completed successfully.")
@@ -532,7 +547,7 @@ class HiveAuthAsync:
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "EndpointConnectionError":
                 _LOGGER.error("2FA failed: cannot reach Cognito endpoint.")
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         _LOGGER.debug("sms_2fa - 2FA authentication completed successfully.")
         return result
@@ -577,7 +592,7 @@ class HiveAuthAsync:
                 raise HiveInvalid2FACode from err
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "EndpointConnectionError":
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         return result
 
@@ -598,7 +613,7 @@ class HiveAuthAsync:
             )
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "EndpointConnectionError":
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         return result
 
@@ -651,7 +666,7 @@ class HiveAuthAsync:
                 _LOGGER.error(
                     "refresh_token - Token refresh failed: cannot reach Cognito endpoint."
                 )
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         _LOGGER.debug("refresh_token - Cognito token refresh completed successfully.")
         return result
@@ -667,7 +682,7 @@ class HiveAuthAsync:
             bool: True if device is registered and remembered, False otherwise.
 
         Raises:
-            HiveApiError: If unable to reach Cognito endpoint.
+            HiveConnectionError: If unable to reach Cognito endpoint.
         """
         if self.client is None:
             await self.async_init()
@@ -741,7 +756,7 @@ class HiveAuthAsync:
             _LOGGER.error(
                 "is_device_registered - Cannot reach Cognito endpoint: %s", str(err)
             )
-            raise HiveApiError from err
+            raise HiveConnectionError from err
 
         # Default: device not registered or status unknown
         return False
@@ -766,7 +781,7 @@ class HiveAuthAsync:
                 raise HiveInvalid2FACode from err
         except botocore.exceptions.EndpointConnectionError as err:
             if err.__class__.__name__ == "ResourceNotFoundException":
-                raise HiveApiError from err
+                raise HiveConnectionError from err
 
         return result
 

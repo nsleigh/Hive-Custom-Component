@@ -16,6 +16,7 @@ from . import API, Auth
 from .device_attributes import HiveAttributes
 from .helper.const import ACTIONS, DEVICES, HIVE_TYPES, PRODUCTS
 from .helper.hive_exceptions import (
+    HiveConnectionError,
     HiveApiError,
     HiveAuthError,
     HiveFailedToRefreshTokens,
@@ -231,7 +232,9 @@ class HiveSession:
         Args:
             username (str, optional): Looks for use@file.com. Defaults to None.
         """
-        using_file = True if username == "use@file.com" else False
+        using_file = (
+            isinstance(username, str) and username.strip().lower() == "use@file.com"
+        )
         if using_file:
             self.config.file = True
 
@@ -477,6 +480,11 @@ class HiveSession:
                 _LOGGER.error("_retryLogin - Login attempt failed: %s", err)
                 last_err = err
         if last_err is not None:
+            if isinstance(last_err, HiveConnectionError):
+                # Hive or Cognito couldn't be reached: nothing is wrong with
+                # the credentials, so let the caller retry later.
+                _LOGGER.error("_retryLogin - Could not reach Hive to log in.")
+                raise last_err
             _LOGGER.error("_retryLogin - All login retries exhausted.")
             raise HiveReauthRequired from last_err
 
@@ -850,11 +858,17 @@ class HiveSession:
                 raise HiveUnknownConfiguration
 
         try:
-            await self.getDevices("No_ID")
+            fetched = await self.getDevices("No_ID")
         except HTTPException:
             raise
 
         if self.data.devices == {} or self.data.products == {}:
+            if not fetched:
+                # The request failed (timeout, network error, Hive error)
+                # rather than returning an empty account. Nothing is wrong
+                # with the login, so let the caller retry.
+                _LOGGER.error("Could not fetch devices from Hive.")
+                raise HiveConnectionError("Could not fetch devices from Hive")
             _LOGGER.error(
                 "No devices or products returned from Hive API, reauthentication required."
             )

@@ -4,6 +4,7 @@ from unittest.mock import MagicMock
 
 from aiohttp.web_exceptions import HTTPServiceUnavailable
 from custom_components.hive.apyhiveapi.helper.hive_exceptions import (
+    HiveConnectionError,
     HiveInvalidDeviceAuthentication,
     HiveReauthRequired,
 )
@@ -49,9 +50,10 @@ async def test_setup_and_unload(
 @pytest.mark.parametrize(
     ("exception", "state", "reauth"),
     [
-        # pyhive-integration 2.0 adds HiveConnectionError (retry) and
-        # HiveUnknownConfiguration (reauth). Add them back with that bump.
+        # The bundled 1.0.x library has HiveConnectionError (retry);
+        # pyhive-integration 2.0 also adds HiveUnknownConfiguration (reauth).
         (HTTPServiceUnavailable(), ConfigEntryState.SETUP_RETRY, False),
+        (HiveConnectionError(), ConfigEntryState.SETUP_RETRY, False),
         (HiveReauthRequired(), ConfigEntryState.SETUP_ERROR, True),
         (HiveInvalidDeviceAuthentication(), ConfigEntryState.SETUP_ERROR, True),
     ],

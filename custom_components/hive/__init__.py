@@ -7,6 +7,7 @@ from typing import Any, Concatenate
 from aiohttp.web_exceptions import HTTPException
 from .apyhiveapi import Auth, Hive
 from .apyhiveapi.helper.hive_exceptions import (
+    HiveConnectionError,
     HiveInvalidDeviceAuthentication,
     HiveReauthRequired,
 )
@@ -59,6 +60,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: HiveConfigEntry) -> None
         raise ConfigEntryNotReady(
             f"Could not connect to the internet: {error}"
         ) from error
+    except HiveConnectionError as error:
+        # Hive couldn't be reached during startup (e.g. a timeout on a cold
+        # boot). The login is fine, so retry setup rather than ask for reauth.
+        raise ConfigEntryNotReady(f"Could not reach Hive: {error}") from error
     except (HiveReauthRequired, HiveInvalidDeviceAuthentication) as err:
         # HiveInvalidDeviceAuthentication: the refresh token expired and this
         # device isn't registered for device login, so the user must sign in

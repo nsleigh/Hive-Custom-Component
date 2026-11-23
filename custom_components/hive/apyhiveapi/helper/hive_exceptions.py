@@ -27,6 +27,16 @@ class HiveApiError(Exception):
     """
 
 
+class HiveConnectionError(HiveApiError):
+    """Hive could not be reached (timeout or network error).
+
+    The failure is expected to be transient, so callers can retry.
+
+    Args:
+        HiveApiError (object): Parent API error class
+    """
+
+
 class HiveAuthError(HiveApiError):
     """Auth error (401/403) — token may be expired or invalid.
 

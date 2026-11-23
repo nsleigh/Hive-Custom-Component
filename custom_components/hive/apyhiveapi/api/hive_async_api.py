@@ -318,6 +318,12 @@ class HiveApiAsync:
             resp = await self.request("post", url, data=jsc)
             json_return["original"] = resp.status
             json_return["parsed"] = await resp.json(content_type=None)
+        except TimeoutError:
+            # Callers treat any non-200 "original" as failure and return
+            # False, so one slow device doesn't abort a multi-entity service
+            # call with an HTTPError.
+            _LOGGER.warning("setState - Hive API timed out for %s/%s", n_type, n_id)
+            return {"original": "timeout", "parsed": None}
         except (FileInUse, OSError, RuntimeError, ConnectionError) as e:
             if e.__class__.__name__ == "FileInUse":
                 return {"original": "file"}
