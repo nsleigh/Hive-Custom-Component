@@ -6,7 +6,7 @@ import time
 
 from aiohttp import ClientError
 from aiohttp.web_exceptions import HTTPException
-from apyhiveapi.helper.hive_exceptions import HiveApiError, NoApiToken
+from .apyhiveapi.helper.hive_exceptions import HiveApiError, NoApiToken
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback

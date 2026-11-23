@@ -7,8 +7,8 @@ from datetime import UTC, datetime, timedelta
 import logging
 from typing import Any
 
-from apyhiveapi import Hive
-from apyhiveapi.helper.hive_exceptions import HiveReauthRequired
+from .apyhiveapi import Hive
+from .apyhiveapi.helper.hive_exceptions import HiveReauthRequired
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,

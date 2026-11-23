@@ -2,7 +2,7 @@
 
 from unittest.mock import AsyncMock, MagicMock
 
-from apyhiveapi.helper.hive_exceptions import (
+from custom_components.hive.apyhiveapi.helper.hive_exceptions import (
     HiveApiError,
     HiveInvalid2FACode,
     HiveInvalidPassword,

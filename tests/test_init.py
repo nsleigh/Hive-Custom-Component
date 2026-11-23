@@ -3,7 +3,7 @@
 from unittest.mock import MagicMock
 
 from aiohttp.web_exceptions import HTTPServiceUnavailable
-from apyhiveapi.helper.hive_exceptions import (
+from custom_components.hive.apyhiveapi.helper.hive_exceptions import (
     HiveInvalidDeviceAuthentication,
     HiveReauthRequired,
 )

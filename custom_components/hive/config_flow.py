@@ -7,8 +7,8 @@ import copy
 import logging
 from typing import Any, override
 
-from apyhiveapi import Auth
-from apyhiveapi.helper.hive_exceptions import (
+from .apyhiveapi import Auth
+from .apyhiveapi.helper.hive_exceptions import (
     HiveApiError,
     HiveInvalid2FACode,
     HiveInvalidPassword,

@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from apyhiveapi.helper.hive_exceptions import HiveReauthRequired
+from .apyhiveapi.helper.hive_exceptions import HiveReauthRequired
 import probatio
 
 from homeassistant.components.hive.services import *  # noqa: F403

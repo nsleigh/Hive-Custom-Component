@@ -5,8 +5,8 @@ from functools import wraps
 from typing import Any, Concatenate
 
 from aiohttp.web_exceptions import HTTPException
-from apyhiveapi import Auth, Hive
-from apyhiveapi.helper.hive_exceptions import (
+from .apyhiveapi import Auth, Hive
+from .apyhiveapi.helper.hive_exceptions import (
     HiveInvalidDeviceAuthentication,
     HiveReauthRequired,
 )

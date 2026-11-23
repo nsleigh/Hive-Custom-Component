@@ -4,7 +4,7 @@ from datetime import UTC, datetime, timedelta
 from unittest.mock import AsyncMock, MagicMock, patch
 
 from aiohttp import ClientError
-from apyhiveapi.helper.hive_exceptions import HiveApiError, HiveReauthRequired
+from custom_components.hive.apyhiveapi.helper.hive_exceptions import HiveApiError, HiveReauthRequired
 from freezegun.api import FrozenDateTimeFactory
 import pytest
 from pytest_homeassistant.common import MockConfigEntry, async_fire_time_changed
